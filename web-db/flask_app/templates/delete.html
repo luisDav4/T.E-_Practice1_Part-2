@@ -19,14 +19,22 @@
                 <div class="col-md-6 offset-md-3">
                     <form class="form" method="POST" action="">
                         <label class="form-label">First Name:</label>
-                        <input class="form-control" type="text" name="first_name" value="{{ student[1] }}" required>
+                        <input class="form-control" disabled type="text" value="{{ student[1] }}" required>
                         <label class="form-label">Last Name:</label>
-                        <input class="form-control" type="text" name="last_name" value="{{ student[2] }}" required>
+                        <input class="form-control" disabled type="text" value="{{ student[2] }}" required>
                         <label class="form-label">City:</label>
-                        <input class="form-control" type="text" name="city" value="{{ student[3] }}" required>
+                        <input class="form-control" disabled type="text" value="{{ student[3] }}" required>
                         <label class="form-label">Semester:</label>
-                        <input class="form-control" type="text" name="semester" value="{{ student[4] }}" required><br>
-                        <input class="btn btn-primary" type="submit" value="Submit">
+                        <input class="form-control" disabled type="text" value="{{ student[4] }}" required><br>
+                        <div class="row  text-center">
+                            <div class="col">
+                                <input class="btn btn-danger" type="submit" value="Delete">
+                            </div>
+                            <div class="col">
+                                <a class="btn btn-primary" href="/studentlist">Cancel</a>
+                            </div>
+                        </div>
+                        
                     </form>       
                 </div>
             </div>

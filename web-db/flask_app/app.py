@@ -71,14 +71,21 @@ def student_edit(id):
     
     return render_template('edit.html', student=student)
 
-@app.route('/studentdelete/<int:id>', methods=['GET'])
+@app.route('/studentdelete/<int:id>', methods=['GET', 'POST'])
 def student_delete(id):
     cursor = mysql.connection.cursor()
-    cursor.execute('DELETE FROM student WHERE id = %s', (id,))
-    mysql.connection.commit()
+    if request.method == 'POST':
+        cursor.execute('DELETE FROM student WHERE id = %s', (id,))
+        mysql.connection.commit()
+        cursor.close()
+    
+        return redirect('/studentlist')
+
+    cursor.execute('SELECT id, first_name, last_name, city, semester FROM student WHERE id = %s', (id,))
+    student = cursor.fetchone()
     cursor.close()
     
-    return redirect('/studentlist')
+    return render_template('delete.html', student=student)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=81, debug=True)
